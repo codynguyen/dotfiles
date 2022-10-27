@@ -1,0 +1,5 @@
+{{- $gitemail := promptStringOnce . "gitemail" "Git email address" -}}
+
+[data]
+gitemail = {{ $gitemail | quote }} 
+gpgprogram = "/usr/bin/gpg"
