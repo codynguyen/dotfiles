@@ -1,8 +1,7 @@
 [user]
 	name = {{ .name }}
 	email = {{ .email }}
-	signingkey = {{ .signingkey }}
-
+	signingkey = {{ .signingKey }}
 [push]
         default = current
 [pull]
@@ -12,4 +11,7 @@
 [tag]
 	gpgsign = true
 [gpg]
-	program = {{ .gpgprogram }}
+	program = {{ .gpgProgram }}
+[github]
+	user = {{ .githubUser }}
+	token = {{ .githubToken }}
