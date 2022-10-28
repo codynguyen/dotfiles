@@ -1,8 +1,12 @@
-{{- $gitemail := promptStringOnce . "gitemail" "Git email address" -}}
+{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $name := promptStringOnce . "name" "Name" -}}
+{{- $signingkey := promptStringOnce . "signingkey" "Git signing key" -}}
 
 [data]
-    gitemail = {{ $gitemail | quote }} 
-    gpgprogram = "/usr/bin/gpg"
+    email = {{ $email | quote }}
+    name = {{ $name | quote }}
+    gpgprogram = "gpg"
+    signingkey = {{ $signingkey | quote }}
 
 [git]
     autoCommit = true

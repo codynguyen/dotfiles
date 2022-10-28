@@ -1,12 +1,15 @@
+[user]
+	name = {{ .name }}
+	email = {{ .email }}
+	signingkey = {{ .signingkey }}
+
+[push]
+        default = current
+[pull]
+        ff = only
 [commit]
 	gpgsign = true
 [tag]
 	gpgsign = true
 [gpg]
 	program = {{ .gpgprogram }}
-[user]
-	email = {{ .gitemail | quote }}
-	name = Cody Nguyen
-	signingkey = 72582521A3E528A2
-[push]
-        default = current
