@@ -1,16 +1,14 @@
 {{- if eq .chezmoi.os "linux" -}}
 #!/bin/sh
 
-sudo dnf -y install dnf-plugins-core
-sudo dnf config-manager \
-    --add-repo \
-    https://download.docker.com/linux/fedora/docker-ce.repo
-sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-sudo systemctl start docker
-# End
-{{ else if eq .chezmoi.os "linux" -}}
-#!/bin/sh
-sudo apt update && sudo apt upgrade
+if command -v apt &> /dev/null
+then
+    echo "apt found. updating system"
+    sudo apt update && sudo apt upgrade -y
+elif command -v dnf &> /dev/null
+    echo "dnf found. updating system"
+    sudo dnf up --refresh
+fi
 # End
 {{ else if eq .chezmoi.os "darwin" -}}
 #!/bin/sh
@@ -19,7 +17,8 @@ xcode-select --install
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-brew install ripgrep vim
-
 brew install --cask iterm2
+brew install zsh
+chsh -s $(which zsh)
+# End
 {{ end -}}
