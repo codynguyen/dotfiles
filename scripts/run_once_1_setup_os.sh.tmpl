@@ -1,13 +1,6 @@
-{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora")) -}}
+{{- if eq .chezmoi.os "linux" -}}
 #!/bin/sh
 
-# Base packages
-sudo dnf -y install ripgrep neofetch vim 
-
-# Keybase
-sudo yum -y install https://prerelease.keybase.io/keybase_amd64.rpm
-
-# Docker
 sudo dnf -y install dnf-plugins-core
 sudo dnf config-manager \
     --add-repo \
@@ -17,10 +10,16 @@ sudo systemctl start docker
 # End
 {{ else if eq .chezmoi.os "linux" -}}
 #!/bin/sh
-# Base packages
-sudo apt install -y ripgrep neofetch vim
+sudo apt update && sudo apt upgrade
 # End
 {{ else if eq .chezmoi.os "darwin" -}}
 #!/bin/sh
-brew install ripgrep
+
+xcode-select --install
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew install ripgrep vim
+
+brew install --cask iterm2
 {{ end -}}
