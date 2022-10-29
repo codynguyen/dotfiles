@@ -4,11 +4,11 @@
 if command -v apt &> /dev/null
 then
     echo "apt found. updating system"
-    sudo apt update && sudo apt upgrade -y
+    sudo apt update && sudo apt -y upgrade
 elif command -v dnf &> /dev/null
 then
     echo "dnf found. updating system"
-    sudo dnf up --refresh
+    sudo dnf -y up --refresh
 fi
 # End
 {{ else if eq .chezmoi.os "darwin" -}}
