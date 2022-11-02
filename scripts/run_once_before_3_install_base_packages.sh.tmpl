@@ -12,11 +12,6 @@ then
         $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt update
     sudo apt -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
-    # Keybase
-    curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
-    sudo apt install ./keybase_amd64.deb
-
 elif command -v dnf &> /dev/null;
 then
     # Docker
@@ -26,13 +21,13 @@ then
         https://download.docker.com/linux/fedora/docker-ce.repo
     sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
     sudo systemctl start docker
-
-    # Keybase
-    sudo yum -y install https://prerelease.keybase.io/keybase_amd64.rpm
 fi
 # End
+
 {{ else if eq .chezmoi.os "darwin" -}}
 #!/bin/sh
-brew cask install docker keybase
+
+brew cask install docker
 # End
+
 {{ end -}}

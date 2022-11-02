@@ -1,0 +1,34 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+
+if command -v apt &> /dev/null;
+then
+    curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
+    sudo apt install ./keybase_amd64.deb
+
+elif command -v dnf &> /dev/null;
+then
+    sudo yum -y install https://prerelease.keybase.io/keybase_amd64.rpm
+fi
+
+# End
+
+{{ else if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+brew cask install keybase
+# End
+
+{{ end -}}
+
+keybase login
+keybase pgp export -q {{ .signingKey }} --secret | gpg --allow-secret-key-import --import
+keybase pgp export -q {{ .signingKey }} | gpg --import
+
+# End
+
+{{- if eq .chezmoi.os "linux" -}}
+gpg-agent --daemon --enable-ssh-support \   
+          --write-env-file "${HOME}/.gpg-agent-info"
+
+# End
+{{ end -}}
