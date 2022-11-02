@@ -1,4 +1,5 @@
 {{- $lp := (index (lastpass "Chezmoi") 0).note -}}
-{{ range gitHubKeys $lp.githubUser -}}
+{{- $githubUser := $lp.githubUser | trim | trimAll "\"" -}}
+{{ range gitHubKeys $githubUser -}}
 {{   .Key }}
 {{ end -}}
