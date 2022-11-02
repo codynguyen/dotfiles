@@ -1,9 +1,9 @@
-{{- if eq .chezmoi.os "linux" -}}
 #!/bin/sh
 
 if command -v apt &> /dev/null;
 then
     # Docker
+    echo "apt docker"
     sudo apt -y install ca-certificates curl gnupg lsb-release
     sudo mkdir -p /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -15,19 +15,15 @@ then
 elif command -v dnf &> /dev/null;
 then
     # Docker
+    echo "dnf docker"
     sudo dnf -y install dnf-plugins-core
     sudo dnf config-manager \
         --add-repo \
         https://download.docker.com/linux/fedora/docker-ce.repo
     sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
     sudo systemctl start docker
+elif command -v brew &> /dev/null;
+then
+    echo "brew docker"
+    brew cask install docker
 fi
-# End
-
-{{ else if eq .chezmoi.os "darwin" -}}
-#!/bin/sh
-
-brew cask install docker
-# End
-
-{{ end -}}

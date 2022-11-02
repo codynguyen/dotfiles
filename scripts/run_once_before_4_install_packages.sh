@@ -1,4 +1,3 @@
-{{- if eq .chezmoi.os "linux" -}}
 #!/bin/sh
 
 if command -v apt &> /dev/null;
@@ -7,9 +6,8 @@ then
 elif command -v dnf &> /dev/null;
 then
     sudo dnf -y install ripgrep neofetch vim fzf tree ack
+elif command -v brew &> /dev/null;
+then
+    brew install ripgrep neofetch vim fzf tree ack
 fi
-# End
-{{ else if eq .chezmoi.os "darwin" -}}
-#!/bin/sh
-brew install ripgrep neofetch vim fzf tree ack
-{{ end -}}
+
