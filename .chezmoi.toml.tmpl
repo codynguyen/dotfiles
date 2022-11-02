@@ -1,13 +1,7 @@
 {{- $name := promptStringOnce . "name" "Name" -}}
-{{- $lp := (index (lastpass "Chezmoi") 0).note -}}
 
 [data]
-    email = {{ $lp.email | trim }}
-    name = {{ $lp.name | trim }}
     gpgProgram = "gpg"
-    signingKey = {{ $lp.signingKey | trim }}
-    githubUser = {{ $lp.githubUser | trim }}
-    githubToken = {{ $lp.githubToken | trim }}
 
 [git]
     autoCommit = true

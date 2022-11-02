@@ -1,7 +1,9 @@
+{{- $lp := (index (lastpass "Chezmoi") 0).note -}}
+
 [user]
-	name = {{ .name }}
-	email = {{ .email }}
-	signingkey = {{ .signingKey }}
+	name = {{ $lp.name | trim }}
+	email = {{ $lp.email | trim }}
+	signingkey = {{ $lp.signingKey | trim }}
 [push]
         default = current
 [pull]
@@ -13,7 +15,7 @@
 [gpg]
 	program = {{ .gpgProgram }}
 [github]
-	user = {{ .githubUser }}
-	token = {{ .githubToken }}
+	user = {{ $lp.githubUser | trim }}
+	token = {{ $lp.githubToken | trim }}
 [core]
 	excludesfile = ~/.gitignore

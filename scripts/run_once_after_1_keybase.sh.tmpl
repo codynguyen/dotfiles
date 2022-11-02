@@ -1,5 +1,6 @@
-{{- if eq .chezmoi.os "linux" -}}
 #!/bin/sh
+
+{{- $lp := (index (lastpass "Chezmoi") 0).note -}}
 
 if command -v apt &> /dev/null;
 then
@@ -9,26 +10,19 @@ then
 elif command -v dnf &> /dev/null;
 then
     sudo yum -y install https://prerelease.keybase.io/keybase_amd64.rpm
+elif command -v brew &> /dev/null;
+then
+    brew cask install keybase
 fi
 
-# End
-
-{{ else if eq .chezmoi.os "darwin" -}}
-#!/bin/sh
-brew cask install keybase
-# End
-
-{{ end -}}
-
 keybase login
-keybase pgp export -q {{ .signingKey }} --secret | gpg --allow-secret-key-import --import
-keybase pgp export -q {{ .signingKey }} | gpg --import
 
-# End
+echo "exporting key {{ $lp.signingKey | trim }}"
+keybase pgp export -q {{ $lp.signingKey | trim }} --secret | gpg --allow-secret-key-import --import
+keybase pgp export -q {{ $lp.signingKey | trim }} | gpg --import
 
 {{- if eq .chezmoi.os "linux" -}}
 gpg-agent --daemon --enable-ssh-support \   
           --write-env-file "${HOME}/.gpg-agent-info"
 
-# End
 {{ end -}}
