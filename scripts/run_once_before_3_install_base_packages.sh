@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "docker"
-curl -fsSL https://get.docker.com -o get-docker.sh | sudo sh
+curl -fsSL https://get.docker.com | sudo sh
 
 if command -v apt &> /dev/null;
 then
