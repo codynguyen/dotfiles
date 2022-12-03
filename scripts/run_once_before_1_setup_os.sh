@@ -16,11 +16,13 @@ then
     chsh -s $(which zsh)
 elif command -v xcode-select &> /dev/null
 then
-    # echo "mac. updating system"
+    echo "mac. updating system"
     # xcode-select --install
 
     # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # brew install --cask iterm2
     # brew install zsh
+    echo "mac. updating system. done nothing."
+
 fi
