@@ -3,10 +3,10 @@
 if command -v apt &> /dev/null
 then
     echo "apt found. updating system"
-    sudo apt update && sudo apt -y upgrade
-    sudo apt -y install zsh
-    echo "changing shell to zsh"
-    chsh -s $(which zsh)
+    # sudo apt update && sudo apt -y upgrade
+    # sudo apt -y install zsh
+    # echo "changing shell to zsh"
+    # chsh -s $(which zsh)
 elif command -v dnf &> /dev/null
 then
     echo "dnf found. updating system"
