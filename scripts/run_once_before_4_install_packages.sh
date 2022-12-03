@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if command -v apt &> /dev/null;
+if command -v apt-get &> /dev/null;
 then
     sudo apt -y install ripgrep neofetch vim fzf tree ack
 elif command -v dnf &> /dev/null;
