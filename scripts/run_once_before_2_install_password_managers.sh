@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if command -v apt &> /dev/null;
+if command -v apt-get &> /dev/null;
 then
     echo "apt install lastpass-cli"
     sudo apt -y install lastpass-cli
