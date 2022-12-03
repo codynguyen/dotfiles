@@ -12,7 +12,9 @@ then
     sudo yum -y install https://prerelease.keybase.io/keybase_amd64.rpm
 elif command -v brew &> /dev/null;
 then
-    brew cask install keybase
+    # brew cask install keybase
+    echo "mac, do nothing"
+
 fi
 
 keybase login
