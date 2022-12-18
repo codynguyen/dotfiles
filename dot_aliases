@@ -1,7 +1,8 @@
 # Wealthica Management Instances
 alias ssh-wprd="aws ssm start-session --target i-08bccc3e1cd7e6ba0 --profile prs"
-alias ssh-wstg="aws ssm start-session --target i-0c478ffc9dddb848e --profile wstg"
-alias ssh-vstg="aws ssm start-session --target i-0de30dc5b552ef00a --profile vstg"
+alias ssh-wprdnew="aws ssm start-session --target i-044729af438f2b91f --profile wprd"
+alias ssh-wstg="aws ssm start-session --target i-0863b8a9bc49d0f39 --profile wstg"
+alias ssh-vstg="aws ssm start-session --target i-0df79e9a54c77f879 --profile vstg"
 alias ssh-vprd="aws ssm start-session --target i-050ebff70d21df11a --profile vprd"
 alias login-prs="aws sso login --profile prs"
 
