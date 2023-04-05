@@ -23,6 +23,8 @@ echo "exporting key {{ $lp.signingKey | trim }}"
 keybase pgp export -q {{ $lp.signingKey | trim }} --secret | gpg --allow-secret-key-import --import
 keybase pgp export -q {{ $lp.signingKey | trim }} | gpg --import
 
+# NOTE: need to trust the imported key: `gpg --edit-key KEY_ID`, then `trust` -> `quit`
+
 {{- if eq .chezmoi.os "linux" -}}
 gpg-agent --daemon --enable-ssh-support \   
           --write-env-file "${HOME}/.gpg-agent-info"
